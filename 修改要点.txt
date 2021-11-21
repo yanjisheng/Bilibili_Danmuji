@@ -1,0 +1,9 @@
+1. 把blivemessagesender项目中的ReceiveController接收blivechat-chessroom发来的弹幕信息（跨域配置类一并复制过来）；
+2. ReceiveController中使用如下方法发送弹幕：
+	if (PublicDataConf.sendBarrageThread != null
+			&& !PublicDataConf.sendBarrageThread.FLAG) {
+		PublicDataConf.barrageString.add(message);
+		synchronized (PublicDataConf.sendBarrageThread) {
+			PublicDataConf.sendBarrageThread.notify();
+		}
+	}
